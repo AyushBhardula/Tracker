@@ -34,7 +34,8 @@ def download_excel_from_drive(file_id, credentials_json):
         status, done = downloader.next_chunk()
 
     print("✅ Authenticated as:", creds.service_account_email)
-    print("📁 Attempting to download file ID:", file_id)
+    print("📁 File ID being downloaded:", file_id)
+    print("📂 Folder Shared With:", "Should include above email")
 
     with open("users.xlsx", "wb") as f:
         f.write(fh.getbuffer())
