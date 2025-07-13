@@ -23,7 +23,7 @@ def download_excel_from_drive(file_id, credentials_json):
     with open("users.xlsx", "wb") as f:
         f.write(fh.getbuffer())
 
-# === DOWNLOAD FROM GOOGLE DRIVE ===
+# == DOWNLOAD FROM GOOGLE DRIVE ==
 if "GDRIVE_CREDENTIALS_JSON" in os.environ:
     file_id = "1eXvMefOX2ps4voSiqf-YJlDVczzdFLxE"  # e.g. "1AbCDeFgHiJkLmNoPqR"
     download_excel_from_drive(file_id, os.environ["GDRIVE_CREDENTIALS_JSON"])
