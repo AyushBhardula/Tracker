@@ -1,8 +1,8 @@
-name: Run Script Daily
+name: Run Daily Tracker Script
 
 on:
   schedule:
-    - cron: "0 21 * * *"  # Runs every day at 9 PM UTC
+    - cron: '0 3 * * *'  # Runs daily at 3 AM UTC
   workflow_dispatch:
 
 jobs:
@@ -10,19 +10,21 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-  GDRIVE_CREDENTIALS_JSON: ${{ secrets.GDRIVE_CREDENTIALS_JSON }}
+      GDRIVE_CREDENTIALS_JSON: ${{ secrets.GDRIVE_CREDENTIALS_JSON }}
 
     steps:
-      - name: Checkout code
+      - name: Checkout repo
         uses: actions/checkout@v3
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: "3.11"
+          python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install pandas openpyxl
+        run: |
+          pip install openpyxl
+          pip install google-api-python-client google-auth google-auth-httplib2 google-auth-oauthlib
 
-      - name: Run script
+      - name: Run Tracker Script
         run: python user_id_pass.py
